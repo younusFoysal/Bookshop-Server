@@ -25,7 +25,9 @@ export class BooksService {
   }
 
   async update(id: string, book: Partial<Book>): Promise<Book> {
-    const updatedBook = await this.bookModel.findByIdAndUpdate(id, book, { new: true }).exec();
+    const updatedBook = await this.bookModel
+      .findByIdAndUpdate(id, book, { new: true })
+      .exec();
     if (!updatedBook) {
       throw new NotFoundException(`Book with ID "${id}" not found`);
     }
